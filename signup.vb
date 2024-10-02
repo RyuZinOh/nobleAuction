@@ -8,6 +8,7 @@ Imports System.Text
 Public Class signup
     Private isDragging As Boolean = False
     Private startPoint As Point
+    Private hazime As New NotifyIcon()
 
     Private Sub signup_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SetPlaceholder(addUsername, "Enter Username")
@@ -15,11 +16,15 @@ Public Class signup
         SetPlaceholder(addPass, "Enter Password", False)
         SetPlaceholder(confirmPass, "Confirm Password", False)
         Me.StartPosition = FormStartPosition.CenterScreen
+
+        ' Initialize NotifyIcon (hazime)
+        hazime.Icon = SystemIcons.Information ' Set an icon for the notification
+        hazime.Visible = True
     End Sub
 
     Private Sub gotoLogin_Click(sender As Object, e As EventArgs) Handles gotoLogin.Click
         Me.Hide()
-        login.Show()
+        Login.Show()
     End Sub
 
     Private Sub dosignUp_Click(sender As Object, e As EventArgs) Handles dosignUp.Click
@@ -33,6 +38,8 @@ Public Class signup
             errorMessage = "Password standard doesn't meet."
         ElseIf addPass.Text <> confirmPass.Text Then
             errorMessage = "Passwords do not match."
+        ElseIf IsUsernameTaken(addUsername.Text) Then
+            errorMessage = "Username is already taken."
         End If
 
         If errorMessage <> "" Then
@@ -40,10 +47,11 @@ Public Class signup
             errorsignuphandler.ForeColor = Color.Red
         Else
             Dim confirmationCode As String = GenerateConfirmationCode()
+
             Clipboard.SetText(confirmationCode)
-            NotifyIcon1.BalloonTipTitle = "Confirmation Code"
-            NotifyIcon1.BalloonTipText = $"Your confirmation code is '{confirmationCode}' and has been copied to your clipboard."
-            NotifyIcon1.ShowBalloonTip(3000)
+
+            ' Show balloon notification
+            ShowBalloonNotification("Your confirmation code has been copied to the clipboard.")
 
             Dim userInput As String = InputBox("Please enter the confirmation code:", "Confirmation Required")
 
@@ -57,6 +65,26 @@ Public Class signup
             End If
         End If
     End Sub
+
+    Private Sub ShowBalloonNotification(message As String)
+        hazime.BalloonTipTitle = "Confirmation Code"
+        hazime.BalloonTipText = message
+        hazime.BalloonTipIcon = ToolTipIcon.Info
+        hazime.ShowBalloonTip(3000) ' Show for 3 seconds
+    End Sub
+
+    Private Function IsUsernameTaken(username As String) As Boolean
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("nobleAuction.My.MySettings.NAconnect").ConnectionString
+        Dim query As String = "SELECT COUNT(*) FROM Users WHERE UserName = @UserName"
+        Using conn As New SqlConnection(connectionString)
+            Using cmd As New SqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@UserName", username)
+                conn.Open()
+                Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+                Return count > 0 ' If count is greater than 0, the username is taken
+            End Using
+        End Using
+    End Function
 
     Private Sub addUsername_Enter(sender As Object, e As EventArgs) Handles addUsername.Enter
         RemovePlaceholder(addUsername, "Enter Username")
@@ -94,6 +122,7 @@ Public Class signup
         If String.IsNullOrWhiteSpace(textBox.Text) Then
             textBox.Text = placeholder
             textBox.ForeColor = Color.Gray
+            If isPassword Then textBox.UseSystemPasswordChar = False
         End If
     End Sub
 
@@ -101,6 +130,9 @@ Public Class signup
         If textBox.Text = placeholder Then
             textBox.Text = ""
             textBox.ForeColor = Color.White
+            If textBox Is confirmPass OrElse textBox Is addPass Then
+                textBox.UseSystemPasswordChar = True
+            End If
         End If
     End Sub
 

@@ -138,4 +138,8 @@ Public Class Login
         End Using
     End Sub
 
+    Private Sub forgetPortal_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles forgetPortal.LinkClicked
+        Me.Hide()
+        recovery.Show()
+    End Sub
 End Class

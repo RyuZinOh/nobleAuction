@@ -102,6 +102,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NobleAuctionDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="recovery.Designer.vb">
+      <DependentUpon>recovery.vb</DependentUpon>
+    </Compile>
+    <Compile Include="recovery.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="signup.Designer.vb">
       <DependentUpon>signup.vb</DependentUpon>
     </Compile>
@@ -124,6 +130,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="recovery.resx">
+      <DependentUpon>recovery.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="signup.resx">
       <DependentUpon>signup.vb</DependentUpon>
@@ -178,6 +187,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\kps_xp.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forget-pass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
