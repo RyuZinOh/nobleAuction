@@ -107,6 +107,12 @@
     <Compile Include="signup.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SplashScreen.Designer.vb">
+      <DependentUpon>SplashScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="login.resx">
@@ -120,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="signup.resx">
       <DependentUpon>signup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashScreen.resx">
+      <DependentUpon>SplashScreen.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +171,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\signup_illu1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nobleAuction_splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kps_xp.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

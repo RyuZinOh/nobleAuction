@@ -302,7 +302,7 @@ Partial Class login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(146, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(61, Byte), Integer), CType(CType(69, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1024, 630)
         Me.Controls.Add(Me.exitLogin)
         Me.Controls.Add(Me.PictureBox4)
