@@ -22,6 +22,7 @@ Partial Class signup
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.errorsignuphandler = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -35,17 +36,18 @@ Partial Class signup
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.gotoLogin = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.exitLogin = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.exitLogin = New System.Windows.Forms.Button()
+        Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel4.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -204,29 +206,6 @@ Partial Class signup
         Me.Label6.TabIndex = 13
         Me.Label6.Text = "Already have and account?"
         '
-        'exitLogin
-        '
-        Me.exitLogin.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.exitLogin.FlatAppearance.BorderSize = 0
-        Me.exitLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.exitLogin.Image = Global.nobleAuction.My.Resources.Resources.cross
-        Me.exitLogin.Location = New System.Drawing.Point(972, -2)
-        Me.exitLogin.Name = "exitLogin"
-        Me.exitLogin.Size = New System.Drawing.Size(52, 31)
-        Me.exitLogin.TabIndex = 9
-        Me.exitLogin.UseVisualStyleBackColor = True
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox1.Image = Global.nobleAuction.My.Resources.Resources.signup_illu1
-        Me.PictureBox1.Location = New System.Drawing.Point(452, 169)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(534, 421)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 11
-        Me.PictureBox1.TabStop = False
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -239,6 +218,16 @@ Partial Class signup
         Me.Label1.TabIndex = 12
         Me.Label1.Text = "Signup Portal"
         '
+        'PictureBox3
+        '
+        Me.PictureBox3.Image = Global.nobleAuction.My.Resources.Resources.login_vector1
+        Me.PictureBox3.Location = New System.Drawing.Point(414, 200)
+        Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(142, 119)
+        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox3.TabIndex = 14
+        Me.PictureBox3.TabStop = False
+        '
         'PictureBox2
         '
         Me.PictureBox2.Image = Global.nobleAuction.My.Resources.Resources.login_vector1
@@ -249,15 +238,33 @@ Partial Class signup
         Me.PictureBox2.TabIndex = 13
         Me.PictureBox2.TabStop = False
         '
-        'PictureBox3
+        'PictureBox1
         '
-        Me.PictureBox3.Image = Global.nobleAuction.My.Resources.Resources.login_vector1
-        Me.PictureBox3.Location = New System.Drawing.Point(414, 200)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(142, 119)
-        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox3.TabIndex = 14
-        Me.PictureBox3.TabStop = False
+        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox1.Image = Global.nobleAuction.My.Resources.Resources.signup_illu1
+        Me.PictureBox1.Location = New System.Drawing.Point(452, 169)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(534, 421)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 11
+        Me.PictureBox1.TabStop = False
+        '
+        'exitLogin
+        '
+        Me.exitLogin.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.exitLogin.FlatAppearance.BorderSize = 0
+        Me.exitLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.exitLogin.Image = Global.nobleAuction.My.Resources.Resources.cross
+        Me.exitLogin.Location = New System.Drawing.Point(972, -2)
+        Me.exitLogin.Name = "exitLogin"
+        Me.exitLogin.Size = New System.Drawing.Size(52, 31)
+        Me.exitLogin.TabIndex = 9
+        Me.exitLogin.UseVisualStyleBackColor = True
+        '
+        'NotifyIcon1
+        '
+        Me.NotifyIcon1.Text = "NotifyIcon1"
+        Me.NotifyIcon1.Visible = True
         '
         'signup
         '
@@ -280,9 +287,9 @@ Partial Class signup
         Me.Panel2.PerformLayout()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -306,4 +313,5 @@ Partial Class signup
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents PictureBox3 As PictureBox
     Friend WithEvents errorsignuphandler As Label
+    Friend WithEvents NotifyIcon1 As NotifyIcon
 End Class

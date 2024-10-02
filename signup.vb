@@ -1,68 +1,63 @@
-﻿Public Class signup
-    '========
-    'Flag to track dragging status
-    '========
+﻿Imports System.Data.SqlClient
+Imports System.Configuration
+Imports System.Linq
+Imports System.Drawing
+Imports System.Security.Cryptography
+Imports System.Text
+
+Public Class signup
     Private isDragging As Boolean = False
     Private startPoint As Point
 
     Private Sub signup_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        '========
-        'Set initial placeholders for signup fields
-        '========
         SetPlaceholder(addUsername, "Enter Username")
         SetPlaceholder(addEmail, "Enter Email")
         SetPlaceholder(addPass, "Enter Password", False)
         SetPlaceholder(confirmPass, "Confirm Password", False)
-
-        '========
-        'Center the form on the screen when it loads
-        '========
         Me.StartPosition = FormStartPosition.CenterScreen
     End Sub
 
-    '========
-    'Navigate to login form
-    '========
     Private Sub gotoLogin_Click(sender As Object, e As EventArgs) Handles gotoLogin.Click
         Me.Hide()
         login.Show()
     End Sub
 
-    '========
-    'Sign up button click handler with error checking
-    '========
     Private Sub dosignUp_Click(sender As Object, e As EventArgs) Handles dosignUp.Click
         Dim errorMessage As String = ""
 
-        '========
-        'Check if fields are valid
-        '========
         If String.IsNullOrWhiteSpace(addUsername.Text) OrElse addUsername.Text = "Enter Username" Then
             errorMessage = "Username is required."
         ElseIf Not IsValidEmail(addEmail.Text) Then
-            errorMessage = "Please enter a valid email"
+            errorMessage = "Please enter a valid email."
         ElseIf Not IsValidPassword(addPass.Text) Then
-            errorMessage = "password standard doesnt meet"
+            errorMessage = "Password standard doesn't meet."
         ElseIf addPass.Text <> confirmPass.Text Then
             errorMessage = "Passwords do not match."
         End If
 
-        '========
-        'Display the error message in the label, or clear it if no errors
-        '========
         If errorMessage <> "" Then
             errorsignuphandler.Text = errorMessage
             errorsignuphandler.ForeColor = Color.Red
         Else
-            errorsignuphandler.Text = "Signup successful!"
-            errorsignuphandler.ForeColor = Color.Green
-            ' Optionally proceed with form submission logic here
+            Dim confirmationCode As String = GenerateConfirmationCode()
+            Clipboard.SetText(confirmationCode)
+            NotifyIcon1.BalloonTipTitle = "Confirmation Code"
+            NotifyIcon1.BalloonTipText = $"Your confirmation code is '{confirmationCode}' and has been copied to your clipboard."
+            NotifyIcon1.ShowBalloonTip(3000)
+
+            Dim userInput As String = InputBox("Please enter the confirmation code:", "Confirmation Required")
+
+            If userInput = confirmationCode Then
+                InsertUserIntoDatabase(addUsername.Text, addEmail.Text, HashPassword(addPass.Text), "User")
+                errorsignuphandler.Text = "Signup successful!"
+                errorsignuphandler.ForeColor = Color.Green
+            Else
+                errorsignuphandler.Text = "Invalid confirmation code. Please try again."
+                errorsignuphandler.ForeColor = Color.Red
+            End If
         End If
     End Sub
 
-    '========
-    'Username placeholder handling
-    '========
     Private Sub addUsername_Enter(sender As Object, e As EventArgs) Handles addUsername.Enter
         RemovePlaceholder(addUsername, "Enter Username")
     End Sub
@@ -71,9 +66,6 @@
         SetPlaceholder(addUsername, "Enter Username")
     End Sub
 
-    '========
-    'Email placeholder and validation
-    '========
     Private Sub addEmail_Enter(sender As Object, e As EventArgs) Handles addEmail.Enter
         RemovePlaceholder(addEmail, "Enter Email")
     End Sub
@@ -82,9 +74,6 @@
         SetPlaceholder(addEmail, "Enter Email")
     End Sub
 
-    '========
-    'Password placeholder handling (no hiding password)
-    '========
     Private Sub addPass_Enter(sender As Object, e As EventArgs) Handles addPass.Enter
         RemovePlaceholder(addPass, "Enter Password")
     End Sub
@@ -93,9 +82,6 @@
         SetPlaceholder(addPass, "Enter Password", False)
     End Sub
 
-    '========
-    'Confirm Password placeholder handling
-    '========
     Private Sub confirmPass_Enter(sender As Object, e As EventArgs) Handles confirmPass.Enter
         RemovePlaceholder(confirmPass, "Confirm Password")
     End Sub
@@ -104,20 +90,13 @@
         SetPlaceholder(confirmPass, "Confirm Password", False)
     End Sub
 
-    '========
-    'Helper to set placeholder text without hiding password
-    '========
     Private Sub SetPlaceholder(textBox As TextBox, placeholder As String, Optional isPassword As Boolean = True)
         If String.IsNullOrWhiteSpace(textBox.Text) Then
             textBox.Text = placeholder
             textBox.ForeColor = Color.Gray
-            ' Do not hide the password using UseSystemPasswordChar
         End If
     End Sub
 
-    '========
-    'Helper to remove placeholder text
-    '========
     Private Sub RemovePlaceholder(textBox As TextBox, placeholder As String)
         If textBox.Text = placeholder Then
             textBox.Text = ""
@@ -125,9 +104,6 @@
         End If
     End Sub
 
-    '========
-    'Email validation logic
-    '========
     Private Function IsValidEmail(email As String) As Boolean
         If email.EndsWith("@gmail.com") AndAlso email.Length > "@gmail.com".Length Then
             Return True
@@ -135,9 +111,6 @@
         Return False
     End Function
 
-    '========
-    'Password validation logic
-    '========
     Private Function IsValidPassword(password As String) As Boolean
         Dim hasUpper As Boolean = password.Any(Function(c) Char.IsUpper(c))
         Dim hasLower As Boolean = password.Any(Function(c) Char.IsLower(c))
@@ -146,9 +119,38 @@
         Return password.Length >= 8 AndAlso hasUpper AndAlso hasLower AndAlso hasDigit AndAlso hasSpecial
     End Function
 
-    '========
-    'Make the form draggable (click and drag anywhere)
-    '========
+    Private Function GenerateConfirmationCode() As String
+        Dim rand As New Random()
+        Dim confirmationCode As String = rand.Next(100000, 999999).ToString()
+        Return confirmationCode
+    End Function
+
+    Private Sub InsertUserIntoDatabase(username As String, email As String, passwordHash As String, role As String)
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("nobleAuction.My.MySettings.NAconnect").ConnectionString
+        Dim query As String = "INSERT INTO Users (UserName, Email, PasswordHash, Role, CreatedAt) VALUES (@UserName, @Email, @PasswordHash, @Role, CURRENT_TIMESTAMP)"
+        Using conn As New SqlConnection(connectionString)
+            Using cmd As New SqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@UserName", username)
+                cmd.Parameters.AddWithValue("@Email", email)
+                cmd.Parameters.AddWithValue("@PasswordHash", passwordHash)
+                cmd.Parameters.AddWithValue("@Role", role)
+                conn.Open()
+                cmd.ExecuteNonQuery()
+            End Using
+        End Using
+    End Sub
+
+    Private Function HashPassword(password As String) As String
+        Using sha256 As SHA256 = SHA256.Create()
+            Dim bytes As Byte() = sha256.ComputeHash(Encoding.UTF8.GetBytes(password))
+            Dim builder As New StringBuilder()
+            For Each b As Byte In bytes
+                builder.Append(b.ToString("x2"))
+            Next
+            Return builder.ToString()
+        End Using
+    End Function
+
     Private Sub signup_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
         If e.Button = MouseButtons.Left Then
             isDragging = True
@@ -163,7 +165,7 @@
         End If
     End Sub
 
-    Private Sub signup_MouseUp(sender As Object, e As EventArgs) Handles Me.MouseUp
+    Private Sub signup_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
         isDragging = False
     End Sub
 

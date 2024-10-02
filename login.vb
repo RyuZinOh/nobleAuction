@@ -1,72 +1,81 @@
-﻿Public Class login
-    '========
-    'Flag to track password visibility
-    '========
+﻿Imports System.Data.SqlClient
+Imports System.Configuration
+Imports System.Security.Cryptography
+Imports System.Text
+Imports System.IO
+
+Public Class Login
     Private isPasswordVisible As Boolean = False
-    '========
-    'Flag to track dragging status
-    '========
     Private isDragging As Boolean = False
     Private startPoint As Point
 
-    Private Sub login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        '========
-        'Set initial placeholder and style
-        '========
+    Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SetPlaceholder(usernameBox, "Enter Username")
         SetPlaceholder(passwordBox, "Enter Password", False)
-
-        '========
-        'Set the default image for pass_toggler (show password icon)
-        '========
         pass_toggler.Image = My.Resources.pass_hide
-
-        '========
-        'Center the form on the screen when it loads
-        '========
         Me.StartPosition = FormStartPosition.CenterScreen
     End Sub
 
     Private Sub usernameBox_Enter(sender As Object, e As EventArgs) Handles usernameBox.Enter
-        '========
-        'Remove username placeholder on focus
-        '========
         RemovePlaceholder(usernameBox, "Enter Username")
     End Sub
 
     Private Sub usernameBox_Leave(sender As Object, e As EventArgs) Handles usernameBox.Leave
-        '========
-        'Set username placeholder when leaving the field if empty
-        '========
         SetPlaceholder(usernameBox, "Enter Username")
     End Sub
 
-    Private Sub password_Enter(sender As Object, e As EventArgs) Handles passwordBox.Enter
-        '========
-        'Remove password placeholder on focus
-        '========
+    Private Sub passwordBox_Enter(sender As Object, e As EventArgs) Handles passwordBox.Enter
         RemovePlaceholder(passwordBox, "Enter Password")
     End Sub
 
-    Private Sub password_Leave(sender As Object, e As EventArgs) Handles passwordBox.Leave
-        '========
-        'Set password placeholder when leaving the field if empty
-        '========
+    Private Sub passwordBox_Leave(sender As Object, e As EventArgs) Handles passwordBox.Leave
         SetPlaceholder(passwordBox, "Enter Password", False)
     End Sub
 
     Private Sub pass_toggler_Click(sender As Object, e As EventArgs) Handles pass_toggler.Click
-        '========
-        'Toggle password visibility and update the icon
-        '========
         isPasswordVisible = Not isPasswordVisible
         passwordBox.UseSystemPasswordChar = Not isPasswordVisible
         pass_toggler.Image = If(isPasswordVisible, My.Resources.pass_hide, My.Resources.pass_show)
     End Sub
 
-    '========
-    'Helper to set the placeholder
-    '========
+    Private Function HashPassword(password As String) As String
+        Using sha256 As SHA256 = SHA256.Create()
+            Dim bytes As Byte() = sha256.ComputeHash(Encoding.UTF8.GetBytes(password))
+            Dim builder As New StringBuilder()
+            For Each b As Byte In bytes
+                builder.Append(b.ToString("x2"))
+            Next
+            Return builder.ToString()
+        End Using
+    End Function
+
+    Private Sub Login_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        If e.Button = MouseButtons.Left Then
+            isDragging = True
+            startPoint = New Point(e.X, e.Y)
+        End If
+    End Sub
+
+    Private Sub Login_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+        If isDragging Then
+            Dim newPosition As Point = Me.PointToScreen(New Point(e.X, e.Y))
+            Me.Location = New Point(newPosition.X - startPoint.X, newPosition.Y - startPoint.Y)
+        End If
+    End Sub
+
+    Private Sub Login_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
+        isDragging = False
+    End Sub
+
+    Private Sub exitLogin_Click(sender As Object, e As EventArgs) Handles exitLogin.Click
+        Application.Exit()
+    End Sub
+
+    Private Sub signupPortal_Click(sender As Object, e As EventArgs) Handles signupPortal.Click
+        Me.Hide()
+        signup.Show()
+    End Sub
+
     Private Sub SetPlaceholder(textBox As TextBox, placeholder As String, Optional isPassword As Boolean = True)
         If String.IsNullOrWhiteSpace(textBox.Text) Then
             textBox.Text = placeholder
@@ -75,9 +84,6 @@
         End If
     End Sub
 
-    '========
-    'Helper to remove the placeholder
-    '========
     Private Sub RemovePlaceholder(textBox As TextBox, placeholder As String)
         If textBox.Text = placeholder Then
             textBox.Text = ""
@@ -86,36 +92,50 @@
         End If
     End Sub
 
-    '========
-    'Handle application exit on exitLogin click
-    '========
-    Private Sub exitLogin_Click(sender As Object, e As EventArgs) Handles exitLogin.Click
-        Application.Exit()
+    Private Sub LogError(ex As Exception)
+        Dim filePath As String = "C:\Logs\LoginErrors.log" ' Adjust the path as needed
+        Using writer As New StreamWriter(filePath, True)
+            writer.WriteLine($"{DateTime.Now}: {ex.Message}")
+        End Using
     End Sub
 
-    '========
-    'Make the form draggable (click and drag anywhere)
-    '========
-    Private Sub login_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
-        If e.Button = MouseButtons.Left Then
-            isDragging = True
-            startPoint = New Point(e.X, e.Y)
+    Private Sub loginPortal_Click(sender As Object, e As EventArgs) Handles loginPortal.Click
+        Dim username As String = usernameBox.Text.Trim()
+        Dim password As String = passwordBox.Text.Trim()
+
+        If String.IsNullOrWhiteSpace(username) OrElse String.IsNullOrWhiteSpace(password) Then
+            MessageBox.Show("Please enter both username and password.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
         End If
+
+        Dim hashedPassword As String = HashPassword(password) ' Ensure password is hashed correctly
+        Dim connectionString As String = ConfigurationManager.ConnectionStrings("nobleAuction.My.MySettings.NAconnect").ConnectionString
+        Dim query As String = "SELECT Role FROM Users WHERE UserName = @UserName AND PasswordHash = @PasswordHash"
+
+        Using conn As New SqlConnection(connectionString)
+            Using cmd As New SqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@UserName", username)
+                cmd.Parameters.AddWithValue("@PasswordHash", hashedPassword)
+                Try
+                    conn.Open()
+                    Dim role As Object = cmd.ExecuteScalar()
+                    If role IsNot Nothing Then
+                        If role.ToString() = "Admin" Then
+                            MessageBox.Show("Welcome, Admin!")
+                            ' Redirect to Admin dashboard or another form
+                        Else
+                            MessageBox.Show("Welcome, User!")
+                            ' Redirect to User dashboard or another form
+                        End If
+                    Else
+                        MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
+                Catch ex As Exception
+                    LogError(ex) ' Log the error
+                    MessageBox.Show("An error occurred during login. Please try again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+            End Using
+        End Using
     End Sub
 
-    Private Sub login_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
-        If isDragging Then
-            Dim newPosition As Point = Me.PointToScreen(New Point(e.X, e.Y))
-            Me.Location = New Point(newPosition.X - startPoint.X, newPosition.Y - startPoint.Y)
-        End If
-    End Sub
-
-    Private Sub login_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
-        isDragging = False
-    End Sub
-
-    Private Sub signupPortal_Click(sender As Object, e As EventArgs) Handles signupPortal.Click
-        Me.Hide()
-        signup.Show()
-    End Sub
 End Class

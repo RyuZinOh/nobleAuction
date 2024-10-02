@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class login
+Partial Class Login
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -26,6 +26,7 @@ Partial Class login
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.forgetPortal = New System.Windows.Forms.LinkLabel()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.pass_toggler = New System.Windows.Forms.Button()
         Me.passwordBox = New System.Windows.Forms.TextBox()
         Me.usernameBox = New System.Windows.Forms.TextBox()
         Me.loginPortal = New System.Windows.Forms.Button()
@@ -41,7 +42,6 @@ Partial Class login
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.pass_toggler = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.loginPanel.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -96,6 +96,21 @@ Partial Class login
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(253, 32)
         Me.Panel3.TabIndex = 18
+        '
+        'pass_toggler
+        '
+        Me.pass_toggler.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.pass_toggler.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pass_toggler.Dock = System.Windows.Forms.DockStyle.Right
+        Me.pass_toggler.FlatAppearance.BorderSize = 0
+        Me.pass_toggler.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.pass_toggler.ForeColor = System.Drawing.Color.White
+        Me.pass_toggler.Image = Global.nobleAuction.My.Resources.Resources.pass_hide
+        Me.pass_toggler.Location = New System.Drawing.Point(179, 0)
+        Me.pass_toggler.Name = "pass_toggler"
+        Me.pass_toggler.Size = New System.Drawing.Size(74, 32)
+        Me.pass_toggler.TabIndex = 19
+        Me.pass_toggler.UseVisualStyleBackColor = False
         '
         'passwordBox
         '
@@ -271,21 +286,6 @@ Partial Class login
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox2.TabIndex = 5
         Me.PictureBox2.TabStop = False
-        '
-        'pass_toggler
-        '
-        Me.pass_toggler.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(55, Byte), Integer))
-        Me.pass_toggler.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pass_toggler.Dock = System.Windows.Forms.DockStyle.Right
-        Me.pass_toggler.FlatAppearance.BorderSize = 0
-        Me.pass_toggler.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.pass_toggler.ForeColor = System.Drawing.Color.White
-        Me.pass_toggler.Image = Global.nobleAuction.My.Resources.Resources.pass_hide
-        Me.pass_toggler.Location = New System.Drawing.Point(179, 0)
-        Me.pass_toggler.Name = "pass_toggler"
-        Me.pass_toggler.Size = New System.Drawing.Size(74, 32)
-        Me.pass_toggler.TabIndex = 19
-        Me.pass_toggler.UseVisualStyleBackColor = False
         '
         'PictureBox1
         '
