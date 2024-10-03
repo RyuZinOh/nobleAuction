@@ -74,6 +74,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminPanel.Designer.vb">
+      <DependentUpon>AdminPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerManager.Designer.vb">
+      <DependentUpon>CustomerManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="login.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +134,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AdminPanel.resx">
+      <DependentUpon>AdminPanel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerManager.resx">
+      <DependentUpon>CustomerManager.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.vb</DependentUpon>
     </EmbeddedResource>
@@ -193,6 +211,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pie-chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Maximize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Search_black.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
