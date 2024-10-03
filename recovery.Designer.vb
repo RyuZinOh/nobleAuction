@@ -23,15 +23,17 @@ Partial Class recovery
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Back = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.addVemail = New System.Windows.Forms.TextBox()
         Me.getCode = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.addUsername = New System.Windows.Forms.TextBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.exitLogin = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -42,6 +44,7 @@ Partial Class recovery
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(29, Byte), Integer), CType(CType(33, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.Back)
         Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
@@ -49,17 +52,21 @@ Partial Class recovery
         Me.Panel1.Size = New System.Drawing.Size(368, 630)
         Me.Panel1.TabIndex = 1
         '
-        'Label1
+        'Back
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Poppins", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(404, 9)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(565, 113)
-        Me.Label1.TabIndex = 13
-        Me.Label1.Text = "Recovery Portal"
+        Me.Back.BackColor = System.Drawing.Color.FromArgb(CType(CType(146, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.Back.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Back.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Back.FlatAppearance.BorderSize = 0
+        Me.Back.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Back.Font = New System.Drawing.Font("Poppins", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Back.ForeColor = System.Drawing.Color.White
+        Me.Back.Location = New System.Drawing.Point(0, 583)
+        Me.Back.Name = "Back"
+        Me.Back.Size = New System.Drawing.Size(368, 47)
+        Me.Back.TabIndex = 17
+        Me.Back.Text = "Go Back"
+        Me.Back.UseVisualStyleBackColor = False
         '
         'Panel2
         '
@@ -72,6 +79,39 @@ Partial Class recovery
         Me.Panel2.Size = New System.Drawing.Size(293, 351)
         Me.Panel2.TabIndex = 16
         '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.PictureBox2)
+        Me.Panel3.Controls.Add(Me.addVemail)
+        Me.Panel3.Location = New System.Drawing.Point(21, 175)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(253, 32)
+        Me.Panel3.TabIndex = 17
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PictureBox2.Image = Global.nobleAuction.My.Resources.Resources.mail
+        Me.PictureBox2.Location = New System.Drawing.Point(229, 0)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(24, 32)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.PictureBox2.TabIndex = 20
+        Me.PictureBox2.TabStop = False
+        '
+        'addVemail
+        '
+        Me.addVemail.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(55, Byte), Integer))
+        Me.addVemail.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.addVemail.Dock = System.Windows.Forms.DockStyle.Left
+        Me.addVemail.Font = New System.Drawing.Font("Poppins", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.addVemail.ForeColor = System.Drawing.Color.White
+        Me.addVemail.Location = New System.Drawing.Point(0, 0)
+        Me.addVemail.Name = "addVemail"
+        Me.addVemail.Size = New System.Drawing.Size(253, 32)
+        Me.addVemail.TabIndex = 19
+        '
         'getCode
         '
         Me.getCode.BackColor = System.Drawing.Color.FromArgb(CType(CType(146, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(226, Byte), Integer))
@@ -79,6 +119,7 @@ Partial Class recovery
         Me.getCode.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.getCode.FlatAppearance.BorderSize = 0
         Me.getCode.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.getCode.Font = New System.Drawing.Font("Poppins", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.getCode.ForeColor = System.Drawing.Color.White
         Me.getCode.Location = New System.Drawing.Point(0, 304)
         Me.getCode.Name = "getCode"
@@ -111,38 +152,17 @@ Partial Class recovery
         Me.Label4.TabIndex = 12
         Me.Label4.Text = "Reset"
         '
-        'Panel3
+        'Label1
         '
-        Me.Panel3.Controls.Add(Me.PictureBox2)
-        Me.Panel3.Controls.Add(Me.addUsername)
-        Me.Panel3.Location = New System.Drawing.Point(21, 175)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(253, 32)
-        Me.Panel3.TabIndex = 17
-        '
-        'addUsername
-        '
-        Me.addUsername.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(55, Byte), Integer))
-        Me.addUsername.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.addUsername.Dock = System.Windows.Forms.DockStyle.Left
-        Me.addUsername.Font = New System.Drawing.Font("Poppins", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.addUsername.ForeColor = System.Drawing.Color.White
-        Me.addUsername.Location = New System.Drawing.Point(0, 0)
-        Me.addUsername.Name = "addUsername"
-        Me.addUsername.Size = New System.Drawing.Size(253, 32)
-        Me.addUsername.TabIndex = 19
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(55, Byte), Integer))
-        Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PictureBox2.Image = Global.nobleAuction.My.Resources.Resources.mail
-        Me.PictureBox2.Location = New System.Drawing.Point(229, 0)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(24, 32)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-        Me.PictureBox2.TabIndex = 20
-        Me.PictureBox2.TabStop = False
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Poppins", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.White
+        Me.Label1.Location = New System.Drawing.Point(404, 9)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(565, 113)
+        Me.Label1.TabIndex = 13
+        Me.Label1.Text = "Recovery Portal"
         '
         'PictureBox1
         '
@@ -154,12 +174,25 @@ Partial Class recovery
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
+        'exitLogin
+        '
+        Me.exitLogin.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.exitLogin.FlatAppearance.BorderSize = 0
+        Me.exitLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.exitLogin.Image = Global.nobleAuction.My.Resources.Resources.cross
+        Me.exitLogin.Location = New System.Drawing.Point(975, 0)
+        Me.exitLogin.Name = "exitLogin"
+        Me.exitLogin.Size = New System.Drawing.Size(52, 31)
+        Me.exitLogin.TabIndex = 21
+        Me.exitLogin.UseVisualStyleBackColor = True
+        '
         'recovery
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(61, Byte), Integer), CType(CType(69, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1024, 630)
+        Me.Controls.Add(Me.exitLogin)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.PictureBox1)
@@ -186,6 +219,8 @@ Partial Class recovery
     Friend WithEvents getCode As Button
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents addUsername As TextBox
+    Friend WithEvents addVemail As TextBox
     Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents exitLogin As Button
+    Friend WithEvents Back As Button
 End Class
