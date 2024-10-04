@@ -121,11 +121,10 @@ Public Class Login
                     Dim role As Object = cmd.ExecuteScalar()
                     If role IsNot Nothing Then
                         If role.ToString() = "Admin" Then
-                            MessageBox.Show("Welcome, Admin!")
-                            ' Redirect to Admin dashboard or another form
+                            AdminPanel.Show()
                         Else
                             MessageBox.Show("Welcome, User!")
-                            ' Redirect to User dashboard or another form
+                            UserPanel.Show()
                         End If
                     Else
                         MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)

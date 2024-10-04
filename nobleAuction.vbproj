@@ -132,6 +132,18 @@
     <Compile Include="SplashScreen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="usersDashboard.Designer.vb">
+      <DependentUpon>usersDashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="usersDashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserPanel.Designer.vb">
+      <DependentUpon>UserPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserPanel.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AdminPanel.resx">
@@ -157,6 +169,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen.resx">
       <DependentUpon>SplashScreen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="usersDashboard.resx">
+      <DependentUpon>usersDashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserPanel.resx">
+      <DependentUpon>UserPanel.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
