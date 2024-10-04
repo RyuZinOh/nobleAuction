@@ -37,6 +37,8 @@ Partial Class AdminPanel
         Me.viewAnalysis = New System.Windows.Forms.Button()
         Me.customerManagement = New System.Windows.Forms.Button()
         Me.admindashboard = New System.Windows.Forms.Button()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.maxmin = New System.Windows.Forms.Button()
         Me.exitLogin = New System.Windows.Forms.Button()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,6 +49,7 @@ Partial Class AdminPanel
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel4.SuspendLayout()
         Me.Panel3.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -69,8 +72,8 @@ Partial Class AdminPanel
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.maxmin)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.exitLogin)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.Panel2)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.Panel1)
         Me.SplitContainer1.Size = New System.Drawing.Size(1024, 630)
         Me.SplitContainer1.SplitterDistance = 277
         Me.SplitContainer1.TabIndex = 0
@@ -237,6 +240,24 @@ Partial Class AdminPanel
         Me.admindashboard.Text = "DASHBOARD"
         Me.admindashboard.UseVisualStyleBackColor = True
         '
+        'Panel2
+        '
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(0, 51)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(743, 579)
+        Me.Panel2.TabIndex = 1
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.maxmin)
+        Me.Panel1.Controls.Add(Me.exitLogin)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(743, 51)
+        Me.Panel1.TabIndex = 0
+        '
         'maxmin
         '
         Me.maxmin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -244,10 +265,10 @@ Partial Class AdminPanel
         Me.maxmin.FlatAppearance.BorderSize = 0
         Me.maxmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.maxmin.Image = Global.nobleAuction.My.Resources.Resources.Maximize
-        Me.maxmin.Location = New System.Drawing.Point(622, 12)
+        Me.maxmin.Location = New System.Drawing.Point(625, 12)
         Me.maxmin.Name = "maxmin"
         Me.maxmin.Size = New System.Drawing.Size(52, 31)
-        Me.maxmin.TabIndex = 19
+        Me.maxmin.TabIndex = 21
         Me.maxmin.UseVisualStyleBackColor = True
         '
         'exitLogin
@@ -257,10 +278,10 @@ Partial Class AdminPanel
         Me.exitLogin.FlatAppearance.BorderSize = 0
         Me.exitLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.exitLogin.Image = Global.nobleAuction.My.Resources.Resources.cross
-        Me.exitLogin.Location = New System.Drawing.Point(680, 12)
+        Me.exitLogin.Location = New System.Drawing.Point(683, 12)
         Me.exitLogin.Name = "exitLogin"
         Me.exitLogin.Size = New System.Drawing.Size(52, 31)
-        Me.exitLogin.TabIndex = 18
+        Me.exitLogin.TabIndex = 20
         Me.exitLogin.UseVisualStyleBackColor = True
         '
         'AdminPanel
@@ -283,13 +304,12 @@ Partial Class AdminPanel
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel4.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents SplitContainer1 As SplitContainer
-    Friend WithEvents maxmin As Button
-    Friend WithEvents exitLogin As Button
     Friend WithEvents adminName As Label
     Friend WithEvents Panel5 As Panel
     Friend WithEvents goSEttingsAdmin As Button
@@ -303,4 +323,8 @@ Partial Class AdminPanel
     Friend WithEvents viewAnalysis As Button
     Friend WithEvents customerManagement As Button
     Friend WithEvents admindashboard As Button
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents maxmin As Button
+    Friend WithEvents exitLogin As Button
 End Class
