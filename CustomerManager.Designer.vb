@@ -22,7 +22,7 @@ Partial Class CustomerManager
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.searchCustomers = New System.Windows.Forms.TextBox()
@@ -60,18 +60,19 @@ Partial Class CustomerManager
         '
         Me.Panel1.Controls.Add(Me.PictureBox1)
         Me.Panel1.Controls.Add(Me.searchCustomers)
-        Me.Panel1.Location = New System.Drawing.Point(499, 79)
+        Me.Panel1.Location = New System.Drawing.Point(461, 78)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(200, 36)
+        Me.Panel1.Size = New System.Drawing.Size(245, 29)
         Me.Panel1.TabIndex = 8
         '
         'searchCustomers
         '
-        Me.searchCustomers.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.searchCustomers.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.searchCustomers.Dock = System.Windows.Forms.DockStyle.Right
         Me.searchCustomers.Font = New System.Drawing.Font("Poppins", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.searchCustomers.Location = New System.Drawing.Point(0, 0)
+        Me.searchCustomers.Location = New System.Drawing.Point(31, 0)
         Me.searchCustomers.Name = "searchCustomers"
-        Me.searchCustomers.Size = New System.Drawing.Size(200, 36)
+        Me.searchCustomers.Size = New System.Drawing.Size(214, 29)
         Me.searchCustomers.TabIndex = 4
         '
         'Label1
@@ -112,14 +113,14 @@ Partial Class CustomerManager
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
         Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Poppins", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Poppins", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.ColumnHeadersHeight = 33
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.uid, Me.fullName, Me.DOB, Me.Email, Me.Address, Me.Password, Me.balance})
@@ -181,7 +182,7 @@ Partial Class CustomerManager
         Me.PictureBox1.Image = Global.nobleAuction.My.Resources.Resources.Search_black
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(31, 36)
+        Me.PictureBox1.Size = New System.Drawing.Size(31, 29)
         Me.PictureBox1.TabIndex = 4
         Me.PictureBox1.TabStop = False
         '
