@@ -251,5 +251,11 @@
   <ItemGroup>
     <None Include="Resources\Search_black.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Trash_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit_black.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

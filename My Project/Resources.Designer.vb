@@ -83,6 +83,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property Edit_black() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Edit_black", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property forget_pass() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("forget_pass", resourceCulture)
@@ -255,6 +265,16 @@ Namespace My.Resources
         Friend ReadOnly Property Trash() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Trash", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Trash_black() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Trash_black", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
