@@ -114,8 +114,10 @@ Partial Class CustomerManager
         '
         'DataGridView1
         '
+        Me.DataGridView1.AllowUserToAddRows = False
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
         Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(0, 128)
