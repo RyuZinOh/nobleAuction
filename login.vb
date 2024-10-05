@@ -93,7 +93,7 @@ Public Class Login
     End Sub
 
     Private Sub LogError(ex As Exception)
-        Dim filePath As String = "C:\Logs\LoginErrors.log" ' Adjust the path as needed
+        Dim filePath As String = "C:\Logs\LoginErrors.log"
         Using writer As New StreamWriter(filePath, True)
             writer.WriteLine($"{DateTime.Now}: {ex.Message}")
         End Using
@@ -108,9 +108,9 @@ Public Class Login
             Return
         End If
 
-        Dim hashedPassword As String = HashPassword(password) ' Ensure password is hashed correctly
+        Dim hashedPassword As String = HashPassword(password)
         Dim connectionString As String = ConfigurationManager.ConnectionStrings("nobleAuction.My.MySettings.NAconnect").ConnectionString
-        Dim query As String = "SELECT Role FROM Users WHERE UserName = @UserName AND PasswordHash = @PasswordHash"
+        Dim query As String = "SELECT Role, Email FROM Users WHERE UserName = @UserName AND PasswordHash = @PasswordHash"
 
         Using conn As New SqlConnection(connectionString)
             Using cmd As New SqlCommand(query, conn)
@@ -118,19 +118,28 @@ Public Class Login
                 cmd.Parameters.AddWithValue("@PasswordHash", hashedPassword)
                 Try
                     conn.Open()
-                    Dim role As Object = cmd.ExecuteScalar()
-                    If role IsNot Nothing Then
-                        If role.ToString() = "Admin" Then
-                            AdminPanel.Show()
+                    Dim reader As SqlDataReader = cmd.ExecuteReader()
+                    If reader.Read() Then
+                        Dim role As String = reader("Role").ToString()
+                        Dim email As String = reader("Email").ToString()
+                        If role = "Admin" Then
+                            Dim adminPanel As New AdminPanel()
+                            adminPanel.AdminUsername = username
+                            adminPanel.Show()
+                            Me.Hide()
+
                         Else
-                            MessageBox.Show("Welcome, User!")
-                            UserPanel.Show()
+                            Dim userPanel As New UserPanel()
+                            userPanel.UserName = username
+                            userPanel.UserEmail = email
+                            userPanel.Show()
+                            Me.Hide()
                         End If
                     Else
                         MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     End If
                 Catch ex As Exception
-                    LogError(ex) ' Log the error
+                    LogError(ex)
                     MessageBox.Show("An error occurred during login. Please try again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
             End Using
@@ -141,8 +150,4 @@ Public Class Login
         Me.Hide()
         recovery.Show()
     End Sub
-
 End Class
-
-
-

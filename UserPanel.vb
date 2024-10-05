@@ -1,8 +1,14 @@
 ﻿Public Class UserPanel
+    Public Property UserName As String
+    Public Property UserEmail As String
+
+    Private Sub UserPanel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        UserNmae.Text = UserName
+        email.Text = UserEmail
+    End Sub
 
     Private Sub userDashboard_Click(sender As Object, e As EventArgs) Handles userDashboard.Click
         Dim customerManagerForm As New usersDashboard()
-
         customerManagerForm.TopLevel = False
         customerManagerForm.FormBorderStyle = FormBorderStyle.None
         customerManagerForm.Dock = DockStyle.Fill
@@ -11,7 +17,6 @@
         customerManagerForm.Show()
     End Sub
 
-    
     Private Sub UserPanel_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         If Panel1.Controls.Count > 0 Then
             Dim currentDashboard As usersDashboard = CType(Panel1.Controls(0), usersDashboard)
@@ -19,5 +24,6 @@
             currentDashboard.Refresh()
         End If
     End Sub
+
 
 End Class
