@@ -1,5 +1,8 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Configuration
+Imports System.Drawing
+Imports System.Drawing.Text
+Imports System.Windows.Forms
 
 Public Class CustomerManager
     Private connectionString As String = ConfigurationManager.ConnectionStrings("nobleAuction.My.MySettings.NAconnect").ConnectionString
@@ -11,13 +14,13 @@ Public Class CustomerManager
     Private Sub LoadData()
         Dim query As String = "
             SELECT DISTINCT
-                u.UserID AS uid, 
-                CONCAT(up.FirstName, ' ', up.LastName) AS fullName,
+                u.UserID AS [UserID], 
+                CONCAT(up.FirstName, ' ', up.LastName) AS FULLNAME,
                 up.DateOfBirth AS DOB,
-                u.Email,
-                up.Address,
-                u.PasswordHash AS Password,
-                ISNULL(ub.NobleCoins, 0) AS balance
+                u.Email as EMAIL,
+                up.Address as ADDRESS,
+                u.PasswordHash AS PASSWORD,
+                ISNULL(ub.NobleCoins, 0) AS BALANCE
             FROM Users u
             INNER JOIN UserProfile up ON u.UserID = up.UserID
             LEFT JOIN UserBalance ub ON u.UserID = ub.UserID
@@ -27,42 +30,32 @@ Public Class CustomerManager
             Using command As New SqlCommand(query, connection)
                 Using adapter As New SqlDataAdapter(command)
                     Dim dataTable As New DataTable()
-
                     Try
                         connection.Open()
                         adapter.Fill(dataTable)
 
+                        DataGridView1.Columns.Clear()
+
                         DataGridView1.DataSource = dataTable
 
-                        ' Set DataGridView column headers
-                        DataGridView1.Columns("uid").HeaderText = "#"
-                        DataGridView1.Columns("fullName").HeaderText = "FULL NAME"
-                        DataGridView1.Columns("DOB").HeaderText = "DOB"
-                        DataGridView1.Columns("Email").HeaderText = "EMAIL"
-                        DataGridView1.Columns("Address").HeaderText = "ADDRESS"
-                        DataGridView1.Columns("Password").HeaderText = "PASSWORD"
-                        DataGridView1.Columns("balance").HeaderText = "BALANCE"
+                        If Not DataGridView1.Columns.Contains("Delete") Then
+                            Dim deleteColumn As New DataGridViewImageColumn()
+                            deleteColumn.HeaderText = "Delete"
+                            deleteColumn.Image = My.Resources.Trash_black
+                            deleteColumn.Name = "Delete"
+                            deleteColumn.ImageLayout = DataGridViewImageCellLayout.Zoom
 
-                        ' Create Edit image column
-                        Dim editImageColumn As New DataGridViewImageColumn() With {
-                            .Name = "Edit",
-                            .HeaderText = "",
-                            .Image = My.Resources.Edit_black,
-                            .ImageLayout = DataGridViewImageCellLayout.Zoom
-                        }
-                        DataGridView1.Columns.Add(editImageColumn)
 
-                        ' Create Delete image column
-                        Dim deleteImageColumn As New DataGridViewImageColumn() With {
-                            .Name = "Delete",
-                            .HeaderText = "",
-                            .Image = My.Resources.Trash_black,
-                            .ImageLayout = DataGridViewImageCellLayout.Zoom
-                        }
-                        DataGridView1.Columns.Add(deleteImageColumn)
+                            DataGridView1.Columns.Add(deleteColumn)
+                        End If
 
-                        ' Handle the CellClick event
-                        AddHandler DataGridView1.CellClick, AddressOf DataGridView1_CellClick
+                        Dim fontFamily As New FontFamily("Poppins")
+                        DataGridView1.ColumnHeadersDefaultCellStyle.Font = New Font(fontFamily, 12, FontStyle.Bold)
+
+                        DataGridView1.DefaultCellStyle.Font = New Font(fontFamily, 8, FontStyle.Regular)
+                        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+                        DataGridView1.Columns(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+                        DataGridView1.Columns(0).Width = 50
 
                     Catch ex As Exception
                         MessageBox.Show("An error occurred while loading data: " & ex.Message)
@@ -72,48 +65,40 @@ Public Class CustomerManager
         End Using
     End Sub
 
-    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs)
-        If e.RowIndex >= 0 Then
-            Dim userId As Integer = Convert.ToInt32(DataGridView1.Rows(e.RowIndex).Cells("uid").Value)
-            If e.ColumnIndex = DataGridView1.Columns("Edit").Index Then
-                MessageBox.Show("Edit User with ID: " & userId)
-                ' You can add logic here to open an edit form
-            ElseIf e.ColumnIndex = DataGridView1.Columns("Delete").Index Then
-                Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete User ID: " & userId & "?", "Confirm Delete", MessageBoxButtons.YesNo)
-                If result = DialogResult.Yes Then
-                    DeleteUser(userId)
-                    LoadData() ' Reload the data after deletion
-                End If
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex = DataGridView1.Columns("Delete").Index Then
+            Dim userID As Integer = Convert.ToInt32(DataGridView1.Rows(e.RowIndex).Cells("UserID").Value)
+            Dim confirmResult = MessageBox.Show("Are you sure you want to delete this user?", "Confirm Delete", MessageBoxButtons.YesNo)
+            If confirmResult = DialogResult.Yes Then
+                DeleteUser(userID)
+                LoadData()
             End If
         End If
     End Sub
 
-    Private Sub DeleteUser(userId As Integer)
-        Dim query As String = "DELETE FROM Users WHERE UserID = @UserID"
-        Dim checkBalanceQuery As String = "SELECT COUNT(*) FROM UserBalance WHERE UserID = @UserID"
+    Private Sub DeleteUser(userID As Integer)
+        Dim query As String = "
+            BEGIN TRY
+                BEGIN TRANSACTION;
+
+                DELETE FROM UserBalance WHERE UserID = @UserID;
+                DELETE FROM UserProfile WHERE UserID = @UserID;
+                DELETE FROM Users WHERE UserID = @UserID;
+
+                COMMIT TRANSACTION;
+            END TRY
+            BEGIN CATCH
+                ROLLBACK TRANSACTION;
+                THROW;
+            END CATCH
+        "
 
         Using connection As New SqlConnection(connectionString)
-            Using command As New SqlCommand(checkBalanceQuery, connection)
-                command.Parameters.AddWithValue("@UserID", userId)
-
+            Using command As New SqlCommand(query, connection)
+                command.Parameters.AddWithValue("@UserID", userID)
                 Try
                     connection.Open()
-                    Dim balanceCount As Integer = Convert.ToInt32(command.ExecuteScalar())
-
-                    If balanceCount > 0 Then
-                        Dim deleteBalanceQuery As String = "DELETE FROM UserBalance WHERE UserID = @UserID"
-                        Using deleteCommand As New SqlCommand(deleteBalanceQuery, connection)
-                            deleteCommand.Parameters.AddWithValue("@UserID", userId)
-                            deleteCommand.ExecuteNonQuery()
-                        End Using
-                    End If
-
-                    Using deleteCommand As New SqlCommand(query, connection)
-                        deleteCommand.Parameters.AddWithValue("@UserID", userId)
-                        deleteCommand.ExecuteNonQuery()
-                        MessageBox.Show("User deleted successfully.")
-                    End Using
-
+                    command.ExecuteNonQuery()
                 Catch ex As Exception
                     MessageBox.Show("An error occurred while deleting the user: " & ex.Message)
                 End Try
