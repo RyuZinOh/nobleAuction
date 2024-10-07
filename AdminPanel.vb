@@ -20,6 +20,10 @@
         Application.Exit()
     End Sub
 
-    Private Sub adminName_Click(sender As Object, e As EventArgs) Handles adminName.Click
+
+    Private Sub AuctionAddition_Click(sender As Object, e As EventArgs) Handles AuctionAddition.Click
+
     End Sub
+
+
 End Class

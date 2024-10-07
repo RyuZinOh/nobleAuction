@@ -86,6 +86,12 @@
     <Compile Include="CustomerManager.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ItemPublish.Designer.vb">
+      <DependentUpon>ItemPublish.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ItemPublish.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="login.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerManager.resx">
       <DependentUpon>CustomerManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemPublish.resx">
+      <DependentUpon>ItemPublish.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.vb</DependentUpon>
