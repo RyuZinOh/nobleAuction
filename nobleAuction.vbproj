@@ -284,5 +284,11 @@
   <ItemGroup>
     <None Include="Resources\Edit_black.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piclogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piclogo-white.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
