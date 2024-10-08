@@ -44,18 +44,19 @@ Public Class CustomerManager
                             deleteColumn.Image = My.Resources.Trash_black
                             deleteColumn.Name = "Delete"
                             deleteColumn.ImageLayout = DataGridViewImageCellLayout.Zoom
-
-
                             DataGridView1.Columns.Add(deleteColumn)
                         End If
 
                         Dim fontFamily As New FontFamily("Poppins")
                         DataGridView1.ColumnHeadersDefaultCellStyle.Font = New Font(fontFamily, 12, FontStyle.Bold)
-
                         DataGridView1.DefaultCellStyle.Font = New Font(fontFamily, 8, FontStyle.Regular)
-                        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
-                        DataGridView1.Columns(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-                        DataGridView1.Columns(0).Width = 50
+
+                        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+                        DataGridView1.Columns("UserID").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+                        DataGridView1.Columns("UserID").Width = 50
+                        DataGridView1.Columns("FULLNAME").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                        DataGridView1.Columns("EMAIL").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                        DataGridView1.Columns("ADDRESS").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
 
                     Catch ex As Exception
                         MessageBox.Show("An error occurred while loading data: " & ex.Message)
@@ -105,4 +106,8 @@ Public Class CustomerManager
             End Using
         End Using
     End Sub
+    Private Sub CustomerManager_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+    End Sub
+
 End Class

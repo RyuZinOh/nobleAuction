@@ -246,6 +246,7 @@ Partial Class ItemPublish
         '
         'itemPicture
         '
+        Me.itemPicture.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.itemPicture.Controls.Add(Me.picIMAGE)
         Me.itemPicture.Location = New System.Drawing.Point(550, 134)
         Me.itemPicture.Name = "itemPicture"
@@ -264,6 +265,7 @@ Partial Class ItemPublish
         '
         'RichtextIdemdesc
         '
+        Me.RichtextIdemdesc.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.RichtextIdemdesc.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(61, Byte), Integer), CType(CType(69, Byte), Integer))
         Me.RichtextIdemdesc.Font = New System.Drawing.Font("Poppins", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RichtextIdemdesc.ForeColor = System.Drawing.Color.White
@@ -275,6 +277,7 @@ Partial Class ItemPublish
         '
         'Panel4
         '
+        Me.Panel4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel4.Controls.Add(Me.starter)
         Me.Panel4.Controls.Add(Me.boom)
         Me.Panel4.Location = New System.Drawing.Point(344, 398)
@@ -307,6 +310,7 @@ Partial Class ItemPublish
         '
         'Panel5
         '
+        Me.Panel5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel5.Controls.Add(Me.ender)
         Me.Panel5.Controls.Add(Me.Label7)
         Me.Panel5.Location = New System.Drawing.Point(545, 398)
@@ -327,8 +331,8 @@ Partial Class ItemPublish
         '
         'Label7
         '
+        Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
-        Me.Label7.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label7.Font = New System.Drawing.Font("Poppins", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.White
         Me.Label7.Location = New System.Drawing.Point(0, 0)
@@ -339,6 +343,7 @@ Partial Class ItemPublish
         '
         'Button1
         '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(55, Byte), Integer))
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -353,6 +358,7 @@ Partial Class ItemPublish
         '
         'Panel6
         '
+        Me.Panel6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel6.Controls.Add(Me.itemCAT)
         Me.Panel6.Controls.Add(Me.Label6)
         Me.Panel6.Location = New System.Drawing.Point(344, 282)
@@ -385,6 +391,7 @@ Partial Class ItemPublish
         '
         'Panel7
         '
+        Me.Panel7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel7.Controls.Add(Me.startingNC)
         Me.Panel7.Controls.Add(Me.Label8)
         Me.Panel7.Location = New System.Drawing.Point(545, 311)

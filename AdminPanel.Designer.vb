@@ -22,7 +22,6 @@ Partial Class AdminPanel
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AdminPanel))
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.adminName = New System.Windows.Forms.Label()
         Me.Panel5 = New System.Windows.Forms.Panel()
@@ -80,10 +79,11 @@ Partial Class AdminPanel
         '
         'adminName
         '
+        Me.adminName.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.adminName.AutoSize = True
         Me.adminName.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.adminName.ForeColor = System.Drawing.Color.Gray
-        Me.adminName.Location = New System.Drawing.Point(105, 554)
+        Me.adminName.Location = New System.Drawing.Point(94, 556)
         Me.adminName.Name = "adminName"
         Me.adminName.Size = New System.Drawing.Size(57, 26)
         Me.adminName.TabIndex = 23
@@ -126,19 +126,23 @@ Partial Class AdminPanel
         '
         'uploadImage
         '
+        Me.uploadImage.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.uploadImage.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.uploadImage.Cursor = System.Windows.Forms.Cursors.Hand
         Me.uploadImage.FlatAppearance.BorderSize = 0
         Me.uploadImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.uploadImage.ForeColor = System.Drawing.SystemColors.ControlLight
         Me.uploadImage.Image = Global.nobleAuction.My.Resources.Resources.Plus
         Me.uploadImage.Location = New System.Drawing.Point(157, 510)
         Me.uploadImage.Name = "uploadImage"
         Me.uploadImage.Size = New System.Drawing.Size(41, 31)
         Me.uploadImage.TabIndex = 20
-        Me.uploadImage.UseVisualStyleBackColor = True
+        Me.uploadImage.UseVisualStyleBackColor = False
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox1.Image = Global.nobleAuction.My.Resources.Resources.userIMAGE
         Me.PictureBox1.Location = New System.Drawing.Point(90, 474)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(84, 67)
