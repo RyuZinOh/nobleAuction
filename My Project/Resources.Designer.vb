@@ -133,6 +133,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property logOUt() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("logOUt", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property mail() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("mail", resourceCulture)
@@ -242,6 +252,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property refresh() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("refresh", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property Search() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Search", resourceCulture)
@@ -265,6 +285,16 @@ Namespace My.Resources
         Friend ReadOnly Property Setting() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Setting", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property showCAser() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("showCAser", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

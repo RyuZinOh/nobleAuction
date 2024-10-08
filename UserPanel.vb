@@ -25,5 +25,17 @@
         End If
     End Sub
 
+    Private Sub maxmin_Click(sender As Object, e As EventArgs) Handles maxmin.Click
+        If Me.WindowState = FormWindowState.Normal Then
+            Me.WindowState = FormWindowState.Maximized
+            maxmin.Image = My.Resources.Minimize
+        Else
+            Me.WindowState = FormWindowState.Normal
+            maxmin.Image = My.Resources.Maximize
+        End If
+    End Sub
 
+    Private Sub exitLogin_Click(sender As Object, e As EventArgs) Handles exitLogin.Click
+        Application.Exit()
+    End Sub
 End Class

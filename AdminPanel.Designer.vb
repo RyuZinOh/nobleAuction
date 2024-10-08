@@ -25,19 +25,20 @@ Partial Class AdminPanel
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.adminName = New System.Windows.Forms.Label()
         Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.goSEttingsAdmin = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.uploadImage = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.AuctionAddition = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.logOFF = New System.Windows.Forms.Button()
+        Me.goSEttingsAdmin = New System.Windows.Forms.Button()
+        Me.uploadImage = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.AuctionAddition = New System.Windows.Forms.Button()
         Me.viewAnalysis = New System.Windows.Forms.Button()
         Me.customerManagement = New System.Windows.Forms.Button()
         Me.admindashboard = New System.Windows.Forms.Button()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.maxmin = New System.Windows.Forms.Button()
         Me.exitLogin = New System.Windows.Forms.Button()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -45,10 +46,10 @@ Partial Class AdminPanel
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.Panel5.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel4.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -60,6 +61,7 @@ Partial Class AdminPanel
         'SplitContainer1.Panel1
         '
         Me.SplitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.SplitContainer1.Panel1.Controls.Add(Me.logOFF)
         Me.SplitContainer1.Panel1.Controls.Add(Me.adminName)
         Me.SplitContainer1.Panel1.Controls.Add(Me.Panel5)
         Me.SplitContainer1.Panel1.Controls.Add(Me.Label2)
@@ -97,6 +99,79 @@ Partial Class AdminPanel
         Me.Panel5.Size = New System.Drawing.Size(158, 41)
         Me.Panel5.TabIndex = 22
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Gray
+        Me.Label2.Location = New System.Drawing.Point(50, 270)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(72, 26)
+        Me.Label2.TabIndex = 21
+        Me.Label2.Text = "SETTING"
+        '
+        'Panel4
+        '
+        Me.Panel4.Controls.Add(Me.AuctionAddition)
+        Me.Panel4.Location = New System.Drawing.Point(69, 225)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(158, 41)
+        Me.Panel4.TabIndex = 18
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Gray
+        Me.Label1.Location = New System.Drawing.Point(50, 196)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(79, 26)
+        Me.Label1.TabIndex = 17
+        Me.Label1.Text = "AUCTION"
+        '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.viewAnalysis)
+        Me.Panel3.Controls.Add(Me.customerManagement)
+        Me.Panel3.Controls.Add(Me.admindashboard)
+        Me.Panel3.Location = New System.Drawing.Point(69, 50)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(158, 119)
+        Me.Panel3.TabIndex = 16
+        '
+        'Panel2
+        '
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(0, 51)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(743, 579)
+        Me.Panel2.TabIndex = 1
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.maxmin)
+        Me.Panel1.Controls.Add(Me.exitLogin)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(743, 51)
+        Me.Panel1.TabIndex = 0
+        '
+        'logOFF
+        '
+        Me.logOFF.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.logOFF.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.logOFF.FlatAppearance.BorderSize = 0
+        Me.logOFF.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.logOFF.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.logOFF.ForeColor = System.Drawing.Color.White
+        Me.logOFF.Image = Global.nobleAuction.My.Resources.Resources.logOUt
+        Me.logOFF.Location = New System.Drawing.Point(55, 585)
+        Me.logOFF.Name = "logOFF"
+        Me.logOFF.Size = New System.Drawing.Size(158, 42)
+        Me.logOFF.TabIndex = 1
+        Me.logOFF.UseVisualStyleBackColor = True
+        '
         'goSEttingsAdmin
         '
         Me.goSEttingsAdmin.Cursor = System.Windows.Forms.Cursors.Hand
@@ -112,17 +187,6 @@ Partial Class AdminPanel
         Me.goSEttingsAdmin.TabIndex = 0
         Me.goSEttingsAdmin.Text = "SETTINGS"
         Me.goSEttingsAdmin.UseVisualStyleBackColor = True
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.Gray
-        Me.Label2.Location = New System.Drawing.Point(50, 270)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(72, 26)
-        Me.Label2.TabIndex = 21
-        Me.Label2.Text = "SETTING"
         '
         'uploadImage
         '
@@ -150,14 +214,6 @@ Partial Class AdminPanel
         Me.PictureBox1.TabIndex = 19
         Me.PictureBox1.TabStop = False
         '
-        'Panel4
-        '
-        Me.Panel4.Controls.Add(Me.AuctionAddition)
-        Me.Panel4.Location = New System.Drawing.Point(69, 225)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(158, 41)
-        Me.Panel4.TabIndex = 18
-        '
         'AuctionAddition
         '
         Me.AuctionAddition.Cursor = System.Windows.Forms.Cursors.Hand
@@ -173,27 +229,6 @@ Partial Class AdminPanel
         Me.AuctionAddition.TabIndex = 0
         Me.AuctionAddition.Text = "ADD"
         Me.AuctionAddition.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Gray
-        Me.Label1.Location = New System.Drawing.Point(50, 196)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(79, 26)
-        Me.Label1.TabIndex = 17
-        Me.Label1.Text = "AUCTION"
-        '
-        'Panel3
-        '
-        Me.Panel3.Controls.Add(Me.viewAnalysis)
-        Me.Panel3.Controls.Add(Me.customerManagement)
-        Me.Panel3.Controls.Add(Me.admindashboard)
-        Me.Panel3.Location = New System.Drawing.Point(69, 50)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(158, 119)
-        Me.Panel3.TabIndex = 16
         '
         'viewAnalysis
         '
@@ -244,24 +279,6 @@ Partial Class AdminPanel
         Me.admindashboard.Text = "DASHBOARD"
         Me.admindashboard.UseVisualStyleBackColor = True
         '
-        'Panel2
-        '
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(0, 51)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(743, 579)
-        Me.Panel2.TabIndex = 1
-        '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.maxmin)
-        Me.Panel1.Controls.Add(Me.exitLogin)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(743, 51)
-        Me.Panel1.TabIndex = 0
-        '
         'maxmin
         '
         Me.maxmin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -305,10 +322,10 @@ Partial Class AdminPanel
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel4.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -331,4 +348,5 @@ Partial Class AdminPanel
     Friend WithEvents Panel1 As Panel
     Friend WithEvents maxmin As Button
     Friend WithEvents exitLogin As Button
+    Friend WithEvents logOFF As Button
 End Class

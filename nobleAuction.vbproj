@@ -293,5 +293,14 @@
   <ItemGroup>
     <None Include="Resources\userIMAGE.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\showCAser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logOUt.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

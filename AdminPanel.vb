@@ -93,4 +93,9 @@ Public Class AdminPanel
             End Using
         End Using
     End Sub
+
+    Private Sub logOFF_Click(sender As Object, e As EventArgs) Handles logOFF.Click
+        Login.Show()
+        Me.Hide()
+    End Sub
 End Class
