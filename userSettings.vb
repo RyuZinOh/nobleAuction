@@ -49,15 +49,15 @@ Public Class userSettings
                         theDOB.Text = Convert.ToDateTime(reader("DateOfBirth")).ToString("MM/dd/yyyy")
 
                         Dim profilePicPath = reader("ProfilePic").ToString()
-                        If Not String.IsNullOrEmpty(profilePicPath) AndAlso IO.File.Exists(profilePicPath) Then
-                            Dim img As Image = Image.FromFile(profilePicPath)
-                            userPFP.Image = ResizeImage(img, userPFP.Size)
+                        If IO.File.Exists(profilePicPath) Then
+                            userPFP.Image = Image.FromFile(profilePicPath)
+                            userPFP.SizeMode = PictureBoxSizeMode.StretchImage
                         End If
 
                         Dim backgroundPath = reader("ProfileBackground").ToString()
-                        If Not String.IsNullOrEmpty(backgroundPath) AndAlso IO.File.Exists(backgroundPath) Then
-                            Dim img As Image = Image.FromFile(backgroundPath)
-                            userBG.Image = CropAndResizeImage(img, userBG.Size)
+                        If IO.File.Exists(backgroundPath) Then
+                            userBG.Image = Image.FromFile(backgroundPath)
+                            userBG.SizeMode = PictureBoxSizeMode.StretchImage
                         End If
                     End If
                 End Using
@@ -65,48 +65,14 @@ Public Class userSettings
         End Using
     End Sub
 
-    Private Function ResizeImage(ByVal img As Image, ByVal size As Size) As Image
-        Dim ratioX As Double = size.Width / img.Width
-        Dim ratioY As Double = size.Height / img.Height
-        Dim ratio As Double = Math.Min(ratioX, ratioY)
-
-        Dim newWidth As Integer = CInt(img.Width * ratio)
-        Dim newHeight As Integer = CInt(img.Height * ratio)
-
-        Dim newImage As New Bitmap(newWidth, newHeight)
-        Using g As Graphics = Graphics.FromImage(newImage)
-            g.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
-            g.DrawImage(img, 0, 0, newWidth, newHeight)
-        End Using
-
-        Return newImage
-    End Function
-
-    Private Function CropAndResizeImage(ByVal img As Image, ByVal size As Size) As Image
-        Dim aspectRatio As Double = img.Width / img.Height
-        Dim targetAspectRatio As Double = size.Width / size.Height
-        Dim cropRect As Rectangle
-
-        If aspectRatio > targetAspectRatio Then
-            Dim newWidth As Integer = CInt(size.Height * aspectRatio)
-            cropRect = New Rectangle((newWidth - size.Width) / 2, 0, size.Width, size.Height)
-        Else
-            Dim newHeight As Integer = CInt(size.Width / aspectRatio)
-            cropRect = New Rectangle(0, (newHeight - size.Height) / 2, size.Width, size.Height)
-        End If
-
-        Dim newImage As New Bitmap(size.Width, size.Height)
-        Using g As Graphics = Graphics.FromImage(newImage)
-            g.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
-            g.DrawImage(img, New Rectangle(0, 0, size.Width, size.Height), cropRect, GraphicsUnit.Pixel)
-        End Using
-
-        Return newImage
-    End Function
+    Protected Overrides Sub OnResize(e As EventArgs)
+        MyBase.OnResize(e)
+        UpdateRegion()
+    End Sub
 
     Private Sub UpdateRegion()
         Dim path As New Drawing2D.GraphicsPath()
-        Dim radius As Integer = 20
+        Dim radius As Integer = 120
 
         path.StartFigure()
         path.AddArc(0, 0, radius, radius, 180, 90)
@@ -118,17 +84,13 @@ Public Class userSettings
         Me.Region = New Region(path)
     End Sub
 
-    Protected Overrides Sub OnResize(e As EventArgs)
-        MyBase.OnResize(e)
-        UpdateRegion()
-    End Sub
-
     Private Sub updateAV_Click(sender As Object, e As EventArgs) Handles updateAV.Click
         Dim openFileDialog As New OpenFileDialog()
         openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp"
         If openFileDialog.ShowDialog() = DialogResult.OK Then
             userPFP.Image = Image.FromFile(openFileDialog.FileName)
             userPFP.SizeMode = PictureBoxSizeMode.StretchImage
+            userPFP.ImageLocation = openFileDialog.FileName ' Save the path for later use
         End If
     End Sub
 
@@ -136,8 +98,9 @@ Public Class userSettings
         Dim openFileDialog As New OpenFileDialog()
         openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp"
         If openFileDialog.ShowDialog() = DialogResult.OK Then
-            Dim img As Image = Image.FromFile(openFileDialog.FileName)
-            userBG.Image = CropAndResizeImage(img, userBG.Size)
+            userBG.Image = Image.FromFile(openFileDialog.FileName)
+            userBG.SizeMode = PictureBoxSizeMode.StretchImage
+            userBG.ImageLocation = openFileDialog.FileName ' Save the path for later use
         End If
     End Sub
 
@@ -148,17 +111,18 @@ Public Class userSettings
 
     Private Sub SaveUserProfile(ByVal userId As Integer)
         Dim connString As String = ConfigurationManager.ConnectionStrings("nobleAuction.My.MySettings.NAconnect").ConnectionString
-        Dim profilePicPath As String = ""
-        Dim backgroundPath As String = ""
 
-        If userPFP.Image IsNot Nothing Then
-            profilePicPath = $"{userId}_ProfilePic.jpg"
-            userPFP.Image.Save(profilePicPath, ImageFormat.Jpeg)
+        Dim profilePicPath As String = Nothing
+        Dim backgroundPath As String = Nothing
+
+        ' Save the profile picture path if it's available
+        If userPFP.Image IsNot Nothing AndAlso Not String.IsNullOrEmpty(userPFP.ImageLocation) Then
+            profilePicPath = userPFP.ImageLocation
         End If
 
-        If userBG.Image IsNot Nothing Then
-            backgroundPath = $"{userId}_Background.jpg"
-            userBG.Image.Save(backgroundPath, ImageFormat.Jpeg)
+        ' Save the background image path if it's available
+        If userBG.Image IsNot Nothing AndAlso Not String.IsNullOrEmpty(userBG.ImageLocation) Then
+            backgroundPath = userBG.ImageLocation
         End If
 
         Using conn As New SqlConnection(connString)
@@ -172,9 +136,5 @@ Public Class userSettings
         End Using
 
         MessageBox.Show("Profile updated successfully!")
-    End Sub
-
-    Private Sub Panel4_Paint(sender As Object, e As PaintEventArgs) Handles Panel4.Paint
-
     End Sub
 End Class

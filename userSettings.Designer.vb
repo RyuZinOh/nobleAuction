@@ -28,6 +28,8 @@ Partial Class userSettings
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.theDOB = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.passwordagain = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.changedPASS = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.theemailuser = New System.Windows.Forms.TextBox()
@@ -47,8 +49,6 @@ Partial Class userSettings
         Me.theaddress = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.userPFP = New System.Windows.Forms.PictureBox()
-        Me.passwordagain = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.userBG, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
@@ -142,6 +142,26 @@ Partial Class userSettings
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(841, 276)
         Me.Panel4.TabIndex = 24
+        '
+        'passwordagain
+        '
+        Me.passwordagain.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.passwordagain.Location = New System.Drawing.Point(246, 201)
+        Me.passwordagain.Name = "passwordagain"
+        Me.passwordagain.Size = New System.Drawing.Size(157, 24)
+        Me.passwordagain.TabIndex = 39
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Black
+        Me.Label5.Location = New System.Drawing.Point(241, 172)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(151, 26)
+        Me.Label5.TabIndex = 38
+        Me.Label5.Text = "Confirm Password"
         '
         'changedPASS
         '
@@ -274,7 +294,7 @@ Partial Class userSettings
         Me.savethething.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.savethething.Font = New System.Drawing.Font("Poppins", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.savethething.ForeColor = System.Drawing.Color.White
-        Me.savethething.Location = New System.Drawing.Point(702, 231)
+        Me.savethething.Location = New System.Drawing.Point(681, 231)
         Me.savethething.Name = "savethething"
         Me.savethething.Size = New System.Drawing.Size(136, 42)
         Me.savethething.TabIndex = 25
@@ -355,26 +375,6 @@ Partial Class userSettings
         Me.userPFP.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.userPFP.TabIndex = 0
         Me.userPFP.TabStop = False
-        '
-        'passwordagain
-        '
-        Me.passwordagain.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.passwordagain.Location = New System.Drawing.Point(246, 201)
-        Me.passwordagain.Name = "passwordagain"
-        Me.passwordagain.Size = New System.Drawing.Size(157, 24)
-        Me.passwordagain.TabIndex = 39
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(241, 172)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(151, 26)
-        Me.Label5.TabIndex = 38
-        Me.Label5.Text = "Confirm Password"
         '
         'userSettings
         '

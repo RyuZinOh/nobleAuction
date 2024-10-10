@@ -9,6 +9,15 @@ Public Class UserPanel
     Private Sub UserPanel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UserNmae.Text = UserName
         email.Text = UserEmail
+
+        ' Load the user dashboard when the panel loads
+        Dim dashboardForm As New usersDashboard()
+        dashboardForm.TopLevel = False
+        dashboardForm.FormBorderStyle = FormBorderStyle.None
+        dashboardForm.Dock = DockStyle.Fill
+        Panel1.Controls.Clear()
+        Panel1.Controls.Add(dashboardForm)
+        dashboardForm.Show()
     End Sub
 
     Private Sub userDashboard_Click(sender As Object, e As EventArgs) Handles userDashboard.Click

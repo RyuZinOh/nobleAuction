@@ -125,6 +125,4 @@ Public Class usersDashboard
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         LoadAuctionItems() ' Reload items from the database
     End Sub
-
-
 End Class
