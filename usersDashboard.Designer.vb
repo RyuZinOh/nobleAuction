@@ -23,6 +23,7 @@ Partial Class usersDashboard
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.btnRefresh = New System.Windows.Forms.Button()
         Me.LOGOLABEL = New System.Windows.Forms.Label()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -30,7 +31,6 @@ Partial Class usersDashboard
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.btnRefresh = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -45,6 +45,18 @@ Partial Class usersDashboard
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(836, 47)
         Me.Panel1.TabIndex = 0
+        '
+        'btnRefresh
+        '
+        Me.btnRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnRefresh.FlatAppearance.BorderSize = 0
+        Me.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnRefresh.Image = Global.nobleAuction.My.Resources.Resources.refresh
+        Me.btnRefresh.Location = New System.Drawing.Point(791, 0)
+        Me.btnRefresh.Name = "btnRefresh"
+        Me.btnRefresh.Size = New System.Drawing.Size(45, 47)
+        Me.btnRefresh.TabIndex = 24
+        Me.btnRefresh.UseVisualStyleBackColor = True
         '
         'LOGOLABEL
         '
@@ -61,9 +73,9 @@ Partial Class usersDashboard
         'FlowLayoutPanel1
         '
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 314)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 363)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(836, 305)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(836, 256)
         Me.FlowLayoutPanel1.TabIndex = 1
         '
         'Panel2
@@ -76,7 +88,7 @@ Partial Class usersDashboard
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 47)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(836, 267)
+        Me.Panel2.Size = New System.Drawing.Size(836, 316)
         Me.Panel2.TabIndex = 2
         '
         'Label3
@@ -132,22 +144,10 @@ Partial Class usersDashboard
         Me.PictureBox1.Image = Global.nobleAuction.My.Resources.Resources.showCAser
         Me.PictureBox1.Location = New System.Drawing.Point(463, 0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(373, 267)
+        Me.PictureBox1.Size = New System.Drawing.Size(373, 316)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
-        '
-        'btnRefresh
-        '
-        Me.btnRefresh.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnRefresh.FlatAppearance.BorderSize = 0
-        Me.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnRefresh.Image = Global.nobleAuction.My.Resources.Resources.refresh
-        Me.btnRefresh.Location = New System.Drawing.Point(791, 0)
-        Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(45, 47)
-        Me.btnRefresh.TabIndex = 24
-        Me.btnRefresh.UseVisualStyleBackColor = True
         '
         'usersDashboard
         '

@@ -25,17 +25,17 @@ Partial Class UserPanel
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.email = New System.Windows.Forms.Label()
         Me.UserNmae = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.setting = New System.Windows.Forms.Button()
         Me.wallett = New System.Windows.Forms.Button()
         Me.mycarts = New System.Windows.Forms.Button()
         Me.auction = New System.Windows.Forms.Button()
         Me.userDashboard = New System.Windows.Forms.Button()
+        Me.setting = New System.Windows.Forms.Button()
         Me.maxmin = New System.Windows.Forms.Button()
         Me.exitLogin = New System.Windows.Forms.Button()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -73,15 +73,6 @@ Partial Class UserPanel
         Me.UserNmae.TabIndex = 18
         Me.UserNmae.Text = "username"
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.nobleAuction.My.Resources.Resources.userIMAGE
-        Me.PictureBox1.Location = New System.Drawing.Point(39, 52)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(97, 80)
-        Me.PictureBox1.TabIndex = 17
-        Me.PictureBox1.TabStop = False
-        '
         'Panel2
         '
         Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -94,21 +85,6 @@ Partial Class UserPanel
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(150, 163)
         Me.Panel2.TabIndex = 20
-        '
-        'setting
-        '
-        Me.setting.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.setting.FlatAppearance.BorderSize = 0
-        Me.setting.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.setting.Font = New System.Drawing.Font("Poppins", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.setting.ForeColor = System.Drawing.Color.White
-        Me.setting.Image = Global.nobleAuction.My.Resources.Resources.Setting
-        Me.setting.Location = New System.Drawing.Point(39, 625)
-        Me.setting.Name = "setting"
-        Me.setting.Size = New System.Drawing.Size(150, 46)
-        Me.setting.TabIndex = 4
-        Me.setting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.setting.UseVisualStyleBackColor = True
         '
         'wallett
         '
@@ -170,6 +146,21 @@ Partial Class UserPanel
         Me.userDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.userDashboard.UseVisualStyleBackColor = True
         '
+        'setting
+        '
+        Me.setting.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.setting.FlatAppearance.BorderSize = 0
+        Me.setting.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.setting.Font = New System.Drawing.Font("Poppins", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.setting.ForeColor = System.Drawing.Color.White
+        Me.setting.Image = Global.nobleAuction.My.Resources.Resources.Setting
+        Me.setting.Location = New System.Drawing.Point(39, 625)
+        Me.setting.Name = "setting"
+        Me.setting.Size = New System.Drawing.Size(150, 46)
+        Me.setting.TabIndex = 4
+        Me.setting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.setting.UseVisualStyleBackColor = True
+        '
         'maxmin
         '
         Me.maxmin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -196,6 +187,15 @@ Partial Class UserPanel
         Me.exitLogin.TabIndex = 22
         Me.exitLogin.UseVisualStyleBackColor = True
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.nobleAuction.My.Resources.Resources.userIMAGE
+        Me.PictureBox1.Location = New System.Drawing.Point(39, 52)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(97, 80)
+        Me.PictureBox1.TabIndex = 17
+        Me.PictureBox1.TabStop = False
+        '
         'UserPanel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -213,8 +213,8 @@ Partial Class UserPanel
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "UserPanel"
         Me.Text = "UserPanel"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

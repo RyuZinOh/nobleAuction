@@ -4,14 +4,14 @@ Imports System.Configuration
 
 Public Class usersDashboard
     Private WithEvents Timer1 As New Timer()
-    Private displayedItemIDs As New HashSet(Of Integer)() ' To track displayed item IDs
+    Private displayedItemIDs As New HashSet(Of Integer)()
 
     Protected Overrides Sub OnLoad(ByVal e As EventArgs)
         MyBase.OnLoad(e)
         UpdateRegion()
         LoadAuctionItems()
-        Timer1.Interval = 10000 ' Set the timer interval to 10 seconds
-        Timer1.Start() ' Start the timer
+        Timer1.Interval = 10000
+        Timer1.Start()
     End Sub
 
     Private Sub UpdateRegion()
@@ -111,8 +111,8 @@ Public Class usersDashboard
                     itemPanel.Controls.Add(lblCategory)
                     itemPanel.Controls.Add(pictureBox)
 
-                    FlowLayoutPanel1.Controls.Add(itemPanel) ' Add the new item panel
-                    displayedItemIDs.Add(itemID) ' Add the ID to the set of displayed IDs
+                    FlowLayoutPanel1.Controls.Add(itemPanel)
+                    displayedItemIDs.Add(itemID)
                 End While
             End Using
         End Using
@@ -125,4 +125,6 @@ Public Class usersDashboard
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         LoadAuctionItems() ' Reload items from the database
     End Sub
+
+
 End Class
