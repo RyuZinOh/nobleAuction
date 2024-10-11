@@ -28,10 +28,8 @@ Partial Class userSettings
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.theDOB = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.passwordagain = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.changedPASS = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.pskchnage = New System.Windows.Forms.TextBox()
+        Me.pskchanger = New System.Windows.Forms.Label()
         Me.theemailuser = New System.Windows.Forms.TextBox()
         Me.asdf = New System.Windows.Forms.Label()
         Me.thephonenumber = New System.Windows.Forms.TextBox()
@@ -49,6 +47,8 @@ Partial Class userSettings
         Me.theaddress = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.userPFP = New System.Windows.Forms.PictureBox()
+        Me.theaddr = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.userBG, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
@@ -122,10 +122,10 @@ Partial Class userSettings
         '
         'Panel4
         '
-        Me.Panel4.Controls.Add(Me.passwordagain)
-        Me.Panel4.Controls.Add(Me.Label5)
-        Me.Panel4.Controls.Add(Me.changedPASS)
+        Me.Panel4.Controls.Add(Me.theaddr)
         Me.Panel4.Controls.Add(Me.Label4)
+        Me.Panel4.Controls.Add(Me.pskchnage)
+        Me.Panel4.Controls.Add(Me.pskchanger)
         Me.Panel4.Controls.Add(Me.theemailuser)
         Me.Panel4.Controls.Add(Me.asdf)
         Me.Panel4.Controls.Add(Me.thephonenumber)
@@ -143,45 +143,25 @@ Partial Class userSettings
         Me.Panel4.Size = New System.Drawing.Size(841, 276)
         Me.Panel4.TabIndex = 24
         '
-        'passwordagain
+        'pskchnage
         '
-        Me.passwordagain.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.passwordagain.Location = New System.Drawing.Point(246, 201)
-        Me.passwordagain.Name = "passwordagain"
-        Me.passwordagain.Size = New System.Drawing.Size(157, 24)
-        Me.passwordagain.TabIndex = 39
+        Me.pskchnage.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.pskchnage.Location = New System.Drawing.Point(246, 201)
+        Me.pskchnage.Name = "pskchnage"
+        Me.pskchnage.Size = New System.Drawing.Size(157, 24)
+        Me.pskchnage.TabIndex = 39
         '
-        'Label5
+        'pskchanger
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(241, 172)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(151, 26)
-        Me.Label5.TabIndex = 38
-        Me.Label5.Text = "Confirm Password"
-        '
-        'changedPASS
-        '
-        Me.changedPASS.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.changedPASS.Location = New System.Drawing.Point(246, 134)
-        Me.changedPASS.Name = "changedPASS"
-        Me.changedPASS.Size = New System.Drawing.Size(157, 24)
-        Me.changedPASS.TabIndex = 37
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(241, 105)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(85, 26)
-        Me.Label4.TabIndex = 36
-        Me.Label4.Text = "Password"
+        Me.pskchanger.AutoSize = True
+        Me.pskchanger.BackColor = System.Drawing.Color.Transparent
+        Me.pskchanger.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.pskchanger.ForeColor = System.Drawing.Color.Black
+        Me.pskchanger.Location = New System.Drawing.Point(241, 172)
+        Me.pskchanger.Name = "pskchanger"
+        Me.pskchanger.Size = New System.Drawing.Size(150, 26)
+        Me.pskchanger.TabIndex = 38
+        Me.pskchanger.Text = "Change Password"
         '
         'theemailuser
         '
@@ -376,6 +356,26 @@ Partial Class userSettings
         Me.userPFP.TabIndex = 0
         Me.userPFP.TabStop = False
         '
+        'theaddr
+        '
+        Me.theaddr.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.theaddr.Location = New System.Drawing.Point(246, 134)
+        Me.theaddr.Name = "theaddr"
+        Me.theaddr.Size = New System.Drawing.Size(157, 24)
+        Me.theaddr.TabIndex = 41
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
+        Me.Label4.Location = New System.Drawing.Point(241, 105)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(73, 26)
+        Me.Label4.TabIndex = 40
+        Me.Label4.Text = "Address"
+        '
         'userSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -423,8 +423,8 @@ Partial Class userSettings
     Friend WithEvents Label3 As Label
     Friend WithEvents theemailuser As TextBox
     Friend WithEvents asdf As Label
-    Friend WithEvents changedPASS As TextBox
+    Friend WithEvents pskchnage As TextBox
+    Friend WithEvents pskchanger As Label
+    Friend WithEvents theaddr As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents passwordagain As TextBox
-    Friend WithEvents Label5 As Label
 End Class
