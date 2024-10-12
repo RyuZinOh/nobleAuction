@@ -25,13 +25,12 @@ Public Class userSettings
         Dim userId As Integer = GetUserId(UserName)
         If userId <> -1 Then LoadUserProfile(userId)
 
-        ' Attach event handlers to textboxes and the RichTextBox to clear them when entered
         AddHandler thefirstname.Enter, AddressOf ClearTextBox
         AddHandler thelastname.Enter, AddressOf ClearTextBox
         AddHandler theaddr.Enter, AddressOf ClearTextBox
         AddHandler thephonenumber.Enter, AddressOf ClearTextBox
         AddHandler theemailuser.Enter, AddressOf ClearTextBox
-        AddHandler thebio.Enter, AddressOf ClearRichTextBox ' Handling the RichTextBox separately
+        AddHandler thebio.Enter, AddressOf ClearRichTextBox
     End Sub
 
     Private Sub ClearTextBox(sender As Object, e As EventArgs)
@@ -155,44 +154,30 @@ Public Class userSettings
             Return
         End If
 
-        If Not String.IsNullOrEmpty(pskchnage.Text) Then
-            If Not ValidatePassword(pskchnage.Text) Then
-                MessageBox.Show("Password must be at least 8 characters long, contain a number and a letter.")
-                Return
-            End If
+        Dim userId As Integer = GetUserId(UserName)
+        If userId <> -1 Then
+            If Not String.IsNullOrEmpty(pskchnage.Text) Then
+                If Not ValidatePassword(pskchnage.Text) Then
+                    MessageBox.Show("Password must be at least 8 characters long, contain a number and a letter.")
+                    Return
+                End If
 
-            confirmationCode = GenerateConfirmationCode()
-            Clipboard.SetText(confirmationCode)
-            NotifyIcon1.BalloonTipText = "Confirmation code copied to your clipboard."
-            NotifyIcon1.ShowBalloonTip(2000)
+                confirmationCode = GenerateConfirmationCode()
+                Clipboard.SetText(confirmationCode)
+                NotifyIcon1.BalloonTipText = "Confirmation code copied to your clipboard."
+                NotifyIcon1.ShowBalloonTip(2000)
 
-            Dim inputCode As String = InputBox("Please enter the confirmation code to proceed:", "Password Change Confirmation")
-            If inputCode = confirmationCode Then
-                Dim userId As Integer = GetUserId(UserName)
-                If userId <> -1 Then ChangePassword(userId)
-            Else
-                MessageBox.Show("Invalid confirmation code. Password change canceled.")
+                ChangePassword(userId)
             End If
-            Return
+            SaveUserProfile(userId)
         End If
-
-        Dim userId2 As Integer = GetUserId(UserName)
-        If userId2 <> -1 Then SaveUserProfile(userId2)
     End Sub
 
     Private Sub SaveUserProfile(ByVal userId As Integer)
         Dim connString As String = ConfigurationManager.ConnectionStrings("nobleAuction.My.MySettings.NAconnect").ConnectionString
 
-        Dim profilePicPath As String = Nothing
-        Dim backgroundPath As String = Nothing
-
-        If userPFP.Image IsNot Nothing AndAlso Not String.IsNullOrEmpty(userPFP.ImageLocation) Then
-            profilePicPath = userPFP.ImageLocation
-        End If
-
-        If userBG.Image IsNot Nothing AndAlso Not String.IsNullOrEmpty(userBG.ImageLocation) Then
-            backgroundPath = userBG.ImageLocation
-        End If
+        Dim profilePicPath As String = If(userPFP.Image IsNot Nothing AndAlso Not String.IsNullOrEmpty(userPFP.ImageLocation), userPFP.ImageLocation, Nothing)
+        Dim backgroundPath As String = If(userBG.Image IsNot Nothing AndAlso Not String.IsNullOrEmpty(userBG.ImageLocation), userBG.ImageLocation, Nothing)
 
         Using conn As New SqlConnection(connString)
             Using cmd As New SqlCommand("UPDATE UserProfile SET FirstName = @FirstName, LastName = @LastName, Address = @Address, Phone = @Phone, Bio = @Bio, ProfilePic = @ProfilePic, ProfileBackground = @ProfileBackground WHERE UserID = @UserID; UPDATE Users SET Email = @Email WHERE UserID = @UserID", conn)
@@ -200,7 +185,7 @@ Public Class userSettings
                 cmd.Parameters.AddWithValue("@LastName", thelastname.Text)
                 cmd.Parameters.AddWithValue("@Address", theaddr.Text)
                 cmd.Parameters.AddWithValue("@Phone", thephonenumber.Text)
-                cmd.Parameters.AddWithValue("@Bio", thebio.Text) ' Handle RichTextBox content
+                cmd.Parameters.AddWithValue("@Bio", thebio.Text)
                 cmd.Parameters.AddWithValue("@ProfilePic", If(String.IsNullOrEmpty(profilePicPath), DBNull.Value, profilePicPath))
                 cmd.Parameters.AddWithValue("@ProfileBackground", If(String.IsNullOrEmpty(backgroundPath), DBNull.Value, backgroundPath))
                 cmd.Parameters.AddWithValue("@Email", theemailuser.Text)
@@ -211,49 +196,28 @@ Public Class userSettings
             End Using
         End Using
 
-        MessageBox.Show("Profile updated successfully!")
+        MessageBox.Show("Profile updated successfully.")
     End Sub
 
-    Private Function ValidateEmail(ByVal email As String) As Boolean
-        Return email.Contains("@")
-    End Function
-
-    Private Function ValidatePassword(ByVal password As String) As Boolean
-        If password.Length < 8 Then Return False
-        If Not password.Any(AddressOf Char.IsDigit) Then Return False
-        If Not password.Any(AddressOf Char.IsLetter) Then Return False
-        Return True
-    End Function
-
     Private Function GenerateConfirmationCode() As String
-        Dim rng As New Random()
-        Dim code As New StringBuilder()
-        For i As Integer = 1 To 6
-            code.Append(rng.Next(0, 10))
-        Next
-        Return code.ToString()
+        Dim random As New Random()
+        Return random.Next(100000, 999999).ToString()
     End Function
 
-    Private Sub ChangePassword(ByVal userId As Integer)
-        If String.IsNullOrEmpty(confirmationCode) OrElse confirmationCode <> pskchnage.Text Then
-            MessageBox.Show("Invalid confirmation code.")
-            Return
-        End If
+    Private Sub ChangePassword(userId As Integer)
+        Dim newPassword As String = pskchnage.Text
+        Dim hashedPassword As String = HashPassword(newPassword)
 
         Dim connString As String = ConfigurationManager.ConnectionStrings("nobleAuction.My.MySettings.NAconnect").ConnectionString
-        Dim hashedPassword As String = HashPassword(pskchnage.Text)
 
         Using conn As New SqlConnection(connString)
             Using cmd As New SqlCommand("UPDATE Users SET PasswordHash = @PasswordHash WHERE UserID = @UserID", conn)
                 cmd.Parameters.AddWithValue("@PasswordHash", hashedPassword)
                 cmd.Parameters.AddWithValue("@UserID", userId)
-
                 conn.Open()
                 cmd.ExecuteNonQuery()
             End Using
         End Using
-
-        MessageBox.Show("Password changed successfully!")
     End Sub
 
     Private Function HashPassword(password As String) As String
@@ -265,5 +229,13 @@ Public Class userSettings
             Next
             Return builder.ToString()
         End Using
+    End Function
+
+    Private Function ValidateEmail(email As String) As Boolean
+        Return email.Contains("@") And email.Contains(".")
+    End Function
+
+    Private Function ValidatePassword(password As String) As Boolean
+        Return password.Length >= 8 And password.Any(AddressOf Char.IsLetter) And password.Any(AddressOf Char.IsDigit)
     End Function
 End Class

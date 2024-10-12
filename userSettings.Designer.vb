@@ -28,6 +28,8 @@ Partial Class userSettings
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.theDOB = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.theaddr = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.pskchnage = New System.Windows.Forms.TextBox()
         Me.pskchanger = New System.Windows.Forms.Label()
         Me.theemailuser = New System.Windows.Forms.TextBox()
@@ -47,8 +49,6 @@ Partial Class userSettings
         Me.theaddress = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.userPFP = New System.Windows.Forms.PictureBox()
-        Me.theaddr = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.userBG, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
@@ -142,6 +142,26 @@ Partial Class userSettings
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(841, 276)
         Me.Panel4.TabIndex = 24
+        '
+        'theaddr
+        '
+        Me.theaddr.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.theaddr.Location = New System.Drawing.Point(246, 134)
+        Me.theaddr.Name = "theaddr"
+        Me.theaddr.Size = New System.Drawing.Size(157, 24)
+        Me.theaddr.TabIndex = 41
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
+        Me.Label4.Location = New System.Drawing.Point(241, 105)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(73, 26)
+        Me.Label4.TabIndex = 40
+        Me.Label4.Text = "Address"
         '
         'pskchnage
         '
@@ -355,26 +375,6 @@ Partial Class userSettings
         Me.userPFP.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.userPFP.TabIndex = 0
         Me.userPFP.TabStop = False
-        '
-        'theaddr
-        '
-        Me.theaddr.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.theaddr.Location = New System.Drawing.Point(246, 134)
-        Me.theaddr.Name = "theaddr"
-        Me.theaddr.Size = New System.Drawing.Size(157, 24)
-        Me.theaddr.TabIndex = 41
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(241, 105)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(73, 26)
-        Me.Label4.TabIndex = 40
-        Me.Label4.Text = "Address"
         '
         'userSettings
         '
