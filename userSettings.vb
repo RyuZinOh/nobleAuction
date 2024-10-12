@@ -8,14 +8,10 @@ Imports System.Text
 
 Public Class userSettings
     Public Property UserName As String
-    Private NotifyIcon1 As New NotifyIcon()
-    Private confirmationCode As String
 
     Protected Overrides Sub OnLoad(ByVal e As EventArgs)
         MyBase.OnLoad(e)
         UpdateRegion()
-        NotifyIcon1.Icon = SystemIcons.Information
-        NotifyIcon1.Visible = True
 
         If String.IsNullOrEmpty(UserName) Then
             MessageBox.Show("UserName cannot be empty.")
@@ -162,11 +158,6 @@ Public Class userSettings
                     Return
                 End If
 
-                confirmationCode = GenerateConfirmationCode()
-                Clipboard.SetText(confirmationCode)
-                NotifyIcon1.BalloonTipText = "Confirmation code copied to your clipboard."
-                NotifyIcon1.ShowBalloonTip(2000)
-
                 ChangePassword(userId)
             End If
             SaveUserProfile(userId)
@@ -198,11 +189,6 @@ Public Class userSettings
 
         MessageBox.Show("Profile updated successfully.")
     End Sub
-
-    Private Function GenerateConfirmationCode() As String
-        Dim random As New Random()
-        Return random.Next(100000, 999999).ToString()
-    End Function
 
     Private Sub ChangePassword(userId As Integer)
         Dim newPassword As String = pskchnage.Text
