@@ -48,11 +48,11 @@ Partial Class usersDashboard
         '
         'btnRefresh
         '
-        Me.btnRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnRefresh.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnRefresh.FlatAppearance.BorderSize = 0
         Me.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRefresh.Image = Global.nobleAuction.My.Resources.Resources.refresh
-        Me.btnRefresh.Location = New System.Drawing.Point(791, 0)
+        Me.btnRefresh.Location = New System.Drawing.Point(779, 0)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(45, 47)
         Me.btnRefresh.TabIndex = 24

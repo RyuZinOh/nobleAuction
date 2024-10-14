@@ -62,4 +62,16 @@ Public Class UserPanel
         Panel1.Controls.Add(userSettingsForm)
         userSettingsForm.Show()
     End Sub
+    Private Sub auction_Click(sender As Object, e As EventArgs) Handles auction.Click
+        Dim auctionForm As New BYauctionUserBids()
+        auctionForm.UserName = Me.UserName ' Pass the current username to the auction form
+        auctionForm.TopLevel = False
+        auctionForm.FormBorderStyle = FormBorderStyle.None
+        auctionForm.Dock = DockStyle.Fill
+        Panel1.Controls.Clear()
+        Panel1.Controls.Add(auctionForm)
+        auctionForm.Show()
+    End Sub
+
+
 End Class

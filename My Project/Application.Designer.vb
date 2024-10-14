@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.nobleAuction.Login
+            Me.MainForm = Global.nobleAuction.signup
         End Sub
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
